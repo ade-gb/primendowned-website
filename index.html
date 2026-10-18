@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#faf7f2" />
+    <meta name="description" content="Reliable laptops, workstations, gaming devices, and business technology solutions for individuals and organizations." />
+    <title>Primendowned — Technology that helps you grow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script>if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) { document.documentElement.classList.add("has-preloader"); document.addEventListener("DOMContentLoaded", () => window.setTimeout(() => { if (document.documentElement.classList.contains("has-preloader")) { document.documentElement.classList.remove("has-preloader"); document.querySelector(".site-preloader")?.remove(); } }, 4000), { once: true }); }</script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <div class="site-preloader" aria-hidden="true">
+      <div class="preloader-center">
+        <span class="preloader-kicker">PRIMENDOWNED · TECHNOLOGY THAT EMPOWERS</span>
+        <h2 class="preloader-title">Technology <span class="preloader-ignore"><img src="assets/primendowned-mark.png" alt="" /></span><br />that helps you grow.</h2>
+      </div>
+      <div class="preloader-foot"><span>RELIABLE TECHNOLOGY</span><div class="preloader-progress"><span></span></div><span>PRIMENDOWNED · NIGERIA</span></div>
+    </div>
+    <div class="announcement"><span>Reliable technology. Business-ready support.</span><a href="shop.html">Explore our services <span aria-hidden="true">↗</span></a></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Primendowned home"><span class="brand-mark"><img src="assets/primendowned-mark.png" alt="" /></span><span>primendowned</span></a>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a class="active" href="index.html">Home</a><a href="shop.html">Shop</a><a href="our-picks.html">Our picks</a><a href="our-story.html">Our story</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-button search-toggle" aria-label="Open search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.2"/><path d="m15.5 15.5 4.2 4.2"/></svg></button>
+        <button class="icon-button account-button" aria-label="Your account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.2 20c.7-3.6 3-5.4 6.8-5.4s6.1 1.8 6.8 5.4"/></svg></button>
+        <button class="icon-button bag-button" aria-label="Shopping bag, 0 items"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 12H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bag-count">0</span></button>
+        <a class="button button-dark header-cta" href="shop.html">Shop now <span aria-hidden="true">↗</span></a>
+        <button class="icon-button menu-toggle" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg></button>
+      </div>
+      <form class="search-panel" role="search"><label for="site-search">What technology do you need?</label><div><input id="site-search" type="search" placeholder="Try ‘laptop’" /><button class="button button-dark" type="submit">Search</button></div></form>
+    </header>
+
+    <main id="top">
+      <section class="hero section-pad">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> Technology for what comes next</div>
+          <h1>Technology that<br />powers <span class="highlight-word"><span class="sun-dot">✳</span> your next</span><br />big move.</h1>
+          <div class="hero-aside"><p>Reliable laptops, workstations, gaming devices, and business technology—backed by professional service and dependable support.</p><div class="hero-actions"><a class="button button-dark" href="shop.html">Shop now <span>↗</span></a><a class="text-link" href="our-picks.html">Explore the edit <span>↓</span></a></div></div>
+        </div>
+        <div class="hero-image image-frame"><img src="assets/images/laptop.jpg" alt="Open laptop in a bright workspace" fetchpriority="high" /><div class="image-caption"><span>TECHNOLOGY FOR EVERYDAY WORK</span><span>01 / 04</span></div><span class="hero-orbit" aria-hidden="true">Made for<br />real life</span></div>
+        <div class="hero-foot"><span>Reliable technology</span><span class="scroll-cue"><span></span> Scroll to discover</span><span>01 — 04</span></div>
+      </section>
+
+      <section class="categories section-pad" id="categories">
+        <div class="section-heading category-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> Thoughtfully picked</div><h2>Find the right<br /><em>technology for you.</em></h2></div><div class="heading-note"><p>Explore technology for productivity, performance, gaming, and business operations.</p><a class="circle-link" href="#category-grid" aria-label="Browse categories">↘</a></div></div>
+        <div class="category-toolbar"><span class="result-note">THE PRIMENDOWNED EDIT <b>·</b> 04 SOLUTIONS</span><div class="filter-tabs" role="group" aria-label="Filter categories"><button class="filter-tab is-selected" data-filter="all">All solutions</button><button class="filter-tab" data-filter="laptops">Laptops</button><button class="filter-tab" data-filter="workstations">Workstations</button><button class="filter-tab" data-filter="gaming">Gaming</button><button class="filter-tab" data-filter="business">Business technology</button></div></div>
+        <div class="category-grid" id="category-grid">
+          <a class="category-card cat-large" data-room="laptops" href="shop.html?category=laptops"><div class="category-image"><img src="assets/images/laptop.jpg" alt="Laptop for work and productivity" loading="lazy" /><span class="category-count">01 — 04</span></div><div class="category-meta"><div><span class="micro-label">PRODUCTIVITY</span><h3>Laptops and devices</h3></div><span class="arrow-circle">↗</span></div></a>
+          <a class="category-card" data-room="workstations" href="shop.html?category=workstations"><div class="category-image"><img src="assets/images/workstation-bright.jpg" alt="Laptop with a code editor on a bright desk" loading="lazy" /><span class="category-count">02 — 04</span></div><div class="category-meta"><div><span class="micro-label">PERFORMANCE</span><h3>Workstations</h3></div><span class="arrow-circle">↗</span></div></a>
+          <a class="category-card" data-room="gaming" href="shop.html?category=gaming"><div class="category-image"><img src="assets/images/gaming.jpg" alt="Gaming console and controller" loading="lazy" /><span class="category-count">03 — 04</span></div><div class="category-meta"><div><span class="micro-label">GAMING & PERFORMANCE</span><h3>Gaming systems</h3></div><span class="arrow-circle">↗</span></div></a>
+          <a class="category-card cat-wide" data-room="business" href="shop.html?category=business"><div class="category-image"><img src="assets/images/hero-workspace.jpg" alt="Team collaborating around computers" loading="lazy" /><span class="category-count">04 — 04</span></div><div class="category-meta"><div><span class="micro-label">FOR ORGANIZATIONS</span><h3>Business & bulk procurement</h3></div><span class="arrow-circle">↗</span></div></a>
+        </div>
+        <div class="category-bottom"><span>Technology to help people and organizations operate at their best.</span><a class="underlined-link" href="shop.html">Shop all categories <span>↗</span></a></div>
+      </section>
+
+      <section class="room-gallery-section section-pad" aria-labelledby="room-gallery-title">
+        <div class="room-gallery-head"><div><div class="eyebrow"><span class="eyebrow-line"></span> A closer look</div><h2 id="room-gallery-title">Technology for the<br /><span>way you work.</span></h2></div><div class="gallery-scroll-note"><span class="gallery-scroll-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg></span><span>SCROLL TO EXPLORE</span></div></div>
+        <div class="room-gallery-window"><div class="room-gallery-track">
+          <a class="room-gallery-card" href="shop.html?category=laptops"><div class="room-gallery-card-image"><img src="assets/images/laptop.jpg" alt="Laptop for working from anywhere" loading="lazy" /><span class="gallery-card-index">01 / 04</span></div><div class="room-gallery-card-copy"><span class="micro-label">PRODUCTIVITY</span><h3>Work from<br />anywhere.</h3><span class="gallery-card-arrow">↗</span></div></a>
+          <a class="room-gallery-card" href="shop.html?category=workstations"><div class="room-gallery-card-image"><img src="assets/images/workstation-bright.jpg" alt="Bright computer workstation with a laptop and monitor" loading="lazy" /><span class="gallery-card-index">02 / 04</span></div><div class="room-gallery-card-copy"><span class="micro-label">PERFORMANCE</span><h3>Performance for<br />what’s next.</h3><span class="gallery-card-arrow">↗</span></div></a>
+          <a class="room-gallery-card" href="shop.html"><div class="room-gallery-card-image"><img src="assets/images/camera.jpg" alt="Cameras and lenses for content creation" loading="lazy" /><span class="gallery-card-index">03 / 04</span></div><div class="room-gallery-card-copy"><span class="micro-label">CONTENT CREATION</span><h3>Create with<br />confidence.</h3><span class="gallery-card-arrow">↗</span></div></a>
+          <a class="room-gallery-card" href="shop.html?category=business"><div class="room-gallery-card-image"><img src="assets/images/hero-workspace.jpg" alt="Team using technology at work" loading="lazy" /><span class="gallery-card-index">04 / 04</span></div><div class="room-gallery-card-copy"><span class="micro-label">BUSINESS TECHNOLOGY</span><h3>Technology that<br />helps you grow.</h3><span class="gallery-card-arrow">↗</span></div></a>
+        </div></div>
+        <div class="gallery-progress-row"><span class="gallery-progress-current">01</span><div class="gallery-progress" role="progressbar" aria-label="Gallery scroll position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div><span>04</span></div>
+      </section>
+
+      <section class="favorites section-pad" id="favorites">
+        <div class="section-heading favorites-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> Our core services</div><h2>Our <em>solutions.</em></h2></div><div class="carousel-controls"><button class="circle-link carousel-prev" aria-label="Previous products">←</button><button class="circle-link carousel-next" aria-label="Next products">→</button></div></div>
+        <div class="product-grid">
+          <article class="product-card"><a href="#newsletter" class="product-visual"><span class="product-tag">SELECTED SOLUTION</span><img src="assets/images/laptop.jpg" alt="Laptop for productivity and remote work" loading="lazy" /><button class="quick-add" aria-label="Add Laptop and device sales to bag" data-product="Laptop and device sales">+</button></a><div class="product-info"><div><p class="product-type">PRODUCTIVITY & REMOTE WORK</p><h3>Laptop and device sales</h3></div><span class="product-price">ASK FOR PRICING</span></div><div class="product-rating"><small>Product availability and warranty shared before purchase</small></div></article>
+          <article class="product-card"><a href="#newsletter" class="product-visual"><span class="product-tag">PRIMENDOWNED PICK</span><img src="assets/images/gaming.jpg" alt="Gaming console and controller" loading="lazy" /><button class="quick-add" aria-label="Add Gaming and performance systems to bag" data-product="Gaming and performance systems">+</button></a><div class="product-info"><div><p class="product-type">GAMING & PERFORMANCE</p><h3>Gaming and performance systems</h3></div><span class="product-price">ASK FOR PRICING</span></div><div class="product-rating"><small>Product availability and warranty shared before purchase</small></div></article>
+          <article class="product-card"><a href="#newsletter" class="product-visual"><span class="product-tag">DEVICE SOURCING</span><img src="assets/images/camera.jpg" alt="Professional cameras and lenses" loading="lazy" /><button class="quick-add" aria-label="Add technology for content creation to bag" data-product="Technology for content creation">+</button></a><div class="product-info"><div><p class="product-type">CONTENT CREATION</p><h3>Technology for content creation</h3></div><span class="product-price">ASK FOR PRICING</span></div><div class="product-rating"><small>Product availability and warranty shared before purchase</small></div></article>
+          <article class="product-card"><a href="#newsletter" class="product-visual"><span class="product-tag">BUSINESS TECHNOLOGY</span><img src="assets/images/workstation-bright.jpg" alt="Laptop with a code editor on a bright desk" loading="lazy" /><button class="quick-add" aria-label="Add Corporate workstation setup to bag" data-product="Corporate workstation setup">+</button></a><div class="product-info"><div><p class="product-type">CORPORATE WORKSTATIONS</p><h3>Corporate workstation setup</h3></div><span class="product-price">ASK FOR PRICING</span></div><div class="product-rating"><small>Product availability and warranty shared before purchase</small></div></article>
+        </div>
+        <div class="favorites-foot"><span>Technology that supports your next step.</span><a class="underlined-link" href="our-picks.html">Explore all solutions <span>↗</span></a></div>
+      </section>
+
+      <section class="story section-pad" id="story">
+        <div class="story-image image-frame"><img src="assets/images/hero-workspace.jpg" alt="Team collaborating around computers" loading="lazy" /><div class="story-stamp">HOME, AT<br />YOUR PACE</div></div>
+        <div class="story-content"><div class="eyebrow"><span class="eyebrow-line"></span> Technology that works for you</div><h2>Technology to<br /><em>move you forward.</em></h2><p>We help individuals and organizations make smarter technology decisions that improve productivity, efficiency, and long-term growth.</p><a class="button button-dark" href="#newsletter">Get to know us <span>↗</span></a><div class="story-index"><span>TECHNOLOGY THAT EMPOWERS</span><span>02 — 04</span></div></div>
+      </section>
+
+      <section class="promo section-pad" id="newsletter">
+        <div class="promo-image"><img src="assets/images/workstation-bright.jpg" alt="Laptop with a code editor on a bright office desk" loading="lazy" /></div><div class="promo-card"><span class="promo-kicker">A LITTLE SOMETHING FOR YOU</span><span class="promo-discount">IT</span><h2>Technology that<br />empowers growth.</h2><p>From device sourcing to corporate workstation setup, find the right technology for your needs.</p><form class="email-form"><label class="sr-only" for="promo-email">Your email address</label><input id="promo-email" type="email" required placeholder="Your email address" /><button type="submit" aria-label="Submit your email address">↗</button></form><small>Stay informed about Primendowned technology solutions.</small></div>
+      </section>
+
+      <section class="quote-section section-pad"><div class="quote-top"><div class="eyebrow"><span class="eyebrow-line"></span> What we believe</div><div class="quote-controls"><button class="circle-link quote-prev" aria-label="Previous testimonial">←</button><button class="circle-link quote-next" aria-label="Next testimonial">→</button></div></div><div class="quote-layout"><div class="quote-mark">“</div><blockquote><p class="quote-text">Technology should empower growth, improve efficiency, and help people and businesses operate at their highest level.</p><div class="quote-by"><div class="avatar-stack"><span>JD</span><span>MC</span><span>AK</span></div><div><strong class="quote-name">Primendowned</strong><span class="quote-location">Technology solutions · Nigeria</span></div></div></blockquote><div class="quote-image"><img src="assets/images/hero-workspace.jpg" alt="Technology professionals collaborating" loading="lazy" /><span class="quote-image-note">TECHNOLOGY THAT EMPOWERS<br />SINCE 2024</span></div></div><div class="quote-progress"><span class="quote-current">01</span><span class="progress-line"><i></i></span><span>03</span></div></section>
+
+      <section class="service-strip section-pad"><div class="service-item"><span class="service-icon">✳</span><div><strong>Carefully sourced</strong><span>Devices selected to meet your needs.</span></div></div><div class="service-item"><span class="service-icon">↗</span><div><strong>Delivery across Nigeria</strong><span>Lagos and nationwide delivery options.</span></div></div><div class="service-item"><span class="service-icon">♡</span><div><strong>Dependable support</strong><span>Professional, customer-first service.</span></div></div></section>
+    </main>
+    <footer class="site-footer" id="footer"><div class="footer-main"><div class="footer-brand"><a class="brand brand-light" href="#top"><span class="brand-mark"><img src="assets/primendowned-mark.png" alt="" /></span><span>primendowned</span></a><p>Technology that empowers growth.<br />Technology for what comes next.</p><div class="social-links"><a href="#" aria-label="Instagram">ig</a><a href="#" aria-label="Pinterest">p</a><a href="#" aria-label="TikTok">tk</a></div></div><div class="footer-links"><div><span>EXPLORE</span><a href="shop.html">Shop all</a><a href="our-picks.html">Best sellers</a><a href="#categories">New arrivals</a><a href="our-story.html">Our story</a></div><div><span>HERE TO HELP</span><a href="policies.html#shipping">Shipping policy</a><a href="policies.html#warranty">Warranty policy</a><a href="policies.html#refunds">Refund policy</a><a href="policies.html#warranty">Warranty claims</a></div><div><span>THE FINE PRINT</span><a href="policies.html#privacy">Privacy policy</a><a href="policies.html#terms">Terms & conditions</a><a href="policies.html#privacy">Customer information</a></div></div><div class="footer-note"><span>TECHNOLOGY THAT MOVES YOU FORWARD.</span><span>RELIABLE DEVICES. DEPENDABLE SUPPORT.</span></div></div><div class="footer-bottom"><span>© PRIMENDOWNED 2026</span><span>SERVING NIGERIA AND BEYOND.</span><a href="#top">BACK TO TOP ↑</a></div></footer>
+    <div class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
