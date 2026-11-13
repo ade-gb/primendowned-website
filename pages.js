@@ -40,26 +40,70 @@ $('.search-toggle')?.addEventListener('click', () => {
   if (open) $('#site-search').focus();
 });
 
-$$('.filter-tab').forEach(tab => tab.addEventListener('click', () => {
-  $$('.filter-tab').forEach(item => item.classList.toggle('is-selected', item === tab));
-  const filter = tab.dataset.filter;
-  $$('.product-card[data-category]').forEach(card => {
-    const visible = filter === 'all' || card.dataset.category === filter;
+const params = new URLSearchParams(window.location.search);
+const catalogGrid = $('#shop-products');
+let activeFilter = params.get('brand') || params.get('category') || 'all';
+let activeQuery = (params.get('q') || '').trim().toLowerCase();
+
+function applyCatalogFilters() {
+  const cards = $$('.product-card[data-category]');
+  cards.forEach(card => {
+    const filterMatch = activeFilter === 'all' || card.dataset.brand === activeFilter || card.dataset.category === activeFilter;
+    const searchText = `${card.dataset.search || ''} ${card.textContent}`.toLowerCase();
+    const visible = filterMatch && (!activeQuery || searchText.includes(activeQuery));
     card.classList.toggle('is-hidden', !visible);
   });
+  const shown = cards.filter(card => !card.classList.contains('is-hidden')).length;
+  const count = $('#catalog-result-count');
+  if (count) count.textContent = activeQuery || activeFilter !== 'all' ? `${shown} ${shown === 1 ? 'PRODUCT' : 'PRODUCTS'} FOUND` : `${cards.length} PRODUCTS`;
+  let empty = $('.catalog-empty', catalogGrid || document);
+  if (cards.length && shown === 0 && !empty) {
+    empty = document.createElement('p');
+    empty.className = 'catalog-empty';
+    empty.textContent = 'No products match this search. Try another model or brand.';
+    catalogGrid?.append(empty);
+  } else if (shown && empty) empty.remove();
+}
+
+$$('.filter-tab').forEach(tab => tab.addEventListener('click', () => {
+  $$('.filter-tab').forEach(item => item.classList.toggle('is-selected', item === tab));
+  activeFilter = tab.dataset.filter;
+  applyCatalogFilters();
 }));
 
-const params = new URLSearchParams(window.location.search);
-const requestedCategory = params.get('category');
-if (requestedCategory) {
-  const tab = $(`.filter-tab[data-filter="${CSS.escape(requestedCategory)}"]`);
-  tab?.click();
+async function loadProductCatalog() {
+  if (!catalogGrid) return;
+  try {
+    const products = window.PRODUCT_CATALOG;
+    if (!Array.isArray(products) || !products.length) throw new Error('Product collection could not be loaded.');
+    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+    catalogGrid.innerHTML = products.map(product => {
+      const detailLines = String(product.details || '').split('\n').map(line => line.trim()).filter(line => line && !['Full details', 'Download item', 'Copy details', 'Show details', 'Hide details'].includes(line));
+      const detailText = detailLines.join('\n');
+      const categoryLabel = product.category === 'gaming' ? 'GAMING LAPTOP' : product.category === 'workstations' ? 'MOBILE WORKSTATION' : 'LAPTOP';
+      const condition = product.condition ? `<span>${escapeHTML(product.condition)}</span>` : '';
+      return `<article class="product-card" data-category="${escapeHTML(product.category)}" data-brand="${escapeHTML(product.brand)}" data-search="${escapeHTML(detailText)}">
+        <div class="product-visual"><span class="product-tag">${escapeHTML(product.brand)} · ${categoryLabel}</span><img src="${escapeHTML(product.image)}" alt="${escapeHTML(product.alt || product.title)}" loading="lazy" width="220" height="220" /><button class="quick-add" data-product="${escapeHTML(product.title)}" aria-label="Add ${escapeHTML(product.title)} to bag">+</button></div>
+        <div class="product-info"><div><p class="product-type">${escapeHTML(product.description || product.brand)}</p><h3>${escapeHTML(product.title)}</h3></div><span class="product-price">${escapeHTML(product.priceLabel || product.price)}</span></div>
+        <div class="product-rating">${condition}<small>${condition ? 'Product condition' : 'Ask us to confirm condition'}</small></div>
+        <details class="product-specs"><summary>Full specifications & ordering</summary><pre>${escapeHTML(detailText)}</pre></details>
+      </article>`;
+    }).join('');
+    catalogGrid.setAttribute('aria-busy', 'false');
+    applyCatalogFilters();
+    if (window.gsap && window.ScrollTrigger && products.length) {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+        gsap.from($$('.product-card', catalogGrid), { y: 14, autoAlpha: 0, duration: .42, stagger: .045, ease: 'power2.out', scrollTrigger: { trigger: catalogGrid, start: 'top 88%', once: true } });
+      });
+    }
+  } catch (error) {
+    catalogGrid.setAttribute('aria-busy', 'false');
+    catalogGrid.innerHTML = '<p class="catalog-empty">The product collection could not load. Please refresh the page.</p>';
+    console.error(error);
+  }
 }
-const requestedSearch = params.get('q');
-if (requestedSearch) {
-  const cards = $$('.product-card[data-category]');
-  cards.forEach(card => card.classList.toggle('is-hidden', !card.textContent.toLowerCase().includes(requestedSearch.toLowerCase())));
-}
+loadProductCatalog();
 
 const updateBag = () => {
   const count = bagItems.length;
@@ -73,14 +117,16 @@ $('.bag-button')?.addEventListener('click', () => {
     : 'Your bag is empty. Explore the shop to find a solution.';
   showToast(summary);
 });
-$$('.quick-add').forEach(button => button.addEventListener('click', event => {
+document.addEventListener('click', event => {
+  const button = event.target.closest('.quick-add');
+  if (!button) return;
   event.preventDefault();
   event.stopPropagation();
   bagItems.push(button.dataset.product);
   sessionStorage.setItem('primendowned-bag-v2', JSON.stringify(bagItems));
   updateBag();
   showToast(`${button.dataset.product} added to your bag`);
-}));
+});
 
 $('.search-panel')?.addEventListener('submit', event => {
   event.preventDefault();
@@ -88,7 +134,8 @@ $('.search-panel')?.addEventListener('submit', event => {
   if (!query) return $('#site-search').focus();
   const cards = $$('.product-card[data-category]');
   if (cards.length) {
-    cards.forEach(card => card.classList.toggle('is-hidden', !card.textContent.toLowerCase().includes(query)));
+    activeQuery = query;
+    applyCatalogFilters();
     $('.search-panel').classList.remove('is-open');
     $('#shop-grid')?.scrollIntoView({ behavior: 'smooth' });
     if (!cards.some(card => !card.classList.contains('is-hidden'))) showToast(`No quick matches for “${query}”.`);
