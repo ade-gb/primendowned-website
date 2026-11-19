@@ -45,10 +45,12 @@ const catalogGrid = $('#shop-products');
 let activeFilter = params.get('brand') || params.get('category') || 'all';
 let activeQuery = (params.get('q') || '').trim().toLowerCase();
 
+$$('.filter-tab').forEach(tab => tab.classList.toggle('is-selected', tab.dataset.filter === activeFilter));
+
 function applyCatalogFilters() {
   const cards = $$('.product-card[data-category]');
   cards.forEach(card => {
-    const filterMatch = activeFilter === 'all' || card.dataset.brand === activeFilter || card.dataset.category === activeFilter;
+    const filterMatch = activeFilter === 'all' || activeFilter === 'laptops' || card.dataset.brand === activeFilter || card.dataset.category === activeFilter || (activeFilter === 'business' && card.dataset.category !== 'gaming');
     const searchText = `${card.dataset.search || ''} ${card.textContent}`.toLowerCase();
     const visible = filterMatch && (!activeQuery || searchText.includes(activeQuery));
     card.classList.toggle('is-hidden', !visible);
@@ -107,8 +109,10 @@ loadProductCatalog();
 
 const updateBag = () => {
   const count = bagItems.length;
-  $('.bag-count').textContent = count;
-  $('.bag-button').setAttribute('aria-label', `Shopping bag, ${count} ${count === 1 ? 'item' : 'items'}`);
+  const bagCount = $('.bag-count');
+  const bagButton = $('.bag-button');
+  if (bagCount) bagCount.textContent = count;
+  bagButton?.setAttribute('aria-label', `Shopping bag, ${count} ${count === 1 ? 'item' : 'items'}`);
 };
 updateBag();
 $('.bag-button')?.addEventListener('click', () => {
@@ -123,10 +127,15 @@ document.addEventListener('click', event => {
   event.preventDefault();
   event.stopPropagation();
   bagItems.push(button.dataset.product);
-  sessionStorage.setItem('primendowned-bag-v2', JSON.stringify(bagItems));
+  try { sessionStorage.setItem('primendowned-bag-v2', JSON.stringify(bagItems)); } catch { /* Keep the bag available for this page session. */ }
   updateBag();
   showToast(`${button.dataset.product} added to your bag`);
 });
+
+$$('.social-links a').forEach(link => link.addEventListener('click', event => {
+  event.preventDefault();
+  showToast('Our social profiles will be linked here soon.');
+}));
 
 $('.search-panel')?.addEventListener('submit', event => {
   event.preventDefault();

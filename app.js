@@ -17,6 +17,15 @@ $('.search-toggle')?.addEventListener('click', () => {
   if (open) $('#site-search').focus();
 });
 
+$('.account-button')?.addEventListener('click', () => {
+  showToast('Account access is not available yet. You can still browse and add products to your bag.');
+});
+
+$$('.social-links a').forEach(link => link.addEventListener('click', event => {
+  event.preventDefault();
+  showToast('Our social profiles will be linked here soon.');
+}));
+
 const menuToggle = $('.menu-toggle');
 menuToggle?.addEventListener('click', () => {
   const open = menuToggle.getAttribute('aria-expanded') !== 'true';
@@ -54,8 +63,10 @@ let bagItems = [];
 try { bagItems = JSON.parse(sessionStorage.getItem('primendowned-bag-v2') || '[]'); } catch { bagItems = []; }
 const updateBag = () => {
   const count = bagItems.length;
-  $('.bag-count').textContent = count;
-  $('.bag-button').setAttribute('aria-label', `Shopping bag, ${count} ${count === 1 ? 'item' : 'items'}`);
+  const bagCount = $('.bag-count');
+  const bagButton = $('.bag-button');
+  if (bagCount) bagCount.textContent = count;
+  bagButton?.setAttribute('aria-label', `Shopping bag, ${count} ${count === 1 ? 'item' : 'items'}`);
 };
 updateBag();
 $('.bag-button')?.addEventListener('click', () => {
@@ -68,7 +79,7 @@ $$('.quick-add').forEach(button => button.addEventListener('click', event => {
   event.preventDefault();
   event.stopPropagation();
   bagItems.push(button.dataset.product);
-  sessionStorage.setItem('primendowned-bag-v2', JSON.stringify(bagItems));
+  try { sessionStorage.setItem('primendowned-bag-v2', JSON.stringify(bagItems)); } catch { /* Keep the bag available for this page session. */ }
   updateBag();
   showToast(`${button.dataset.product} added to your bag`);
 }));
@@ -77,23 +88,14 @@ $('.search-panel').addEventListener('submit', event => {
   event.preventDefault();
   const query = $('#site-search').value.trim();
   if (!query) return $('#site-search').focus();
-  const match = $$('.category-card').find(card => card.textContent.toLowerCase().includes(query.toLowerCase()));
-  if (match) {
-    $$('.filter-tab').forEach(tab => tab.classList.toggle('is-selected', tab.dataset.filter === 'all'));
-    $$('.category-card').forEach(card => card.classList.toggle('is-hidden', card !== match));
-    $('#categories').scrollIntoView({ behavior: 'smooth' });
-    searchPanel.classList.remove('is-open');
-  } else {
-    showToast(`No quick matches for “${query}” — try browsing the collection.`);
-  }
+  window.location.href = `shop.html?q=${encodeURIComponent(query)}`;
 });
 
 $('.email-form').addEventListener('submit', event => {
   event.preventDefault();
   const input = $('#promo-email');
   if (!input.reportValidity()) return;
-  showToast('You’re on the list. Check your inbox for your welcome offer.');
-  input.value = '';
+  showToast('Thanks for your interest. Newsletter signup is not connected yet.');
 });
 
 const testimonials = [
